@@ -1,32 +1,11 @@
-!!!
-%html
-  %head
-    %meta{:charset => "utf-8"}
-      %title Sample Deployment
-      :css
-        body {
-          color: #ffffff;
-          background-color: #007f00;
-          font-family: Arial, sans-serif;
-          font-size: 14px;
-        }
-        
-        h1 {
-          font-size: 500%;
-          font-weight: normal;
-          margin-bottom: 0;
-        }
-        
-        h2 {
-          font-size: 200%;
-          font-weight: normal;
-          margin-bottom: 0;
-        }
-    %body
-    %div{:align => "center"}
-      %h1 Congratulations!
-      %h2 AWS CodePipeline build is a Success.
-      %p
+<html>
+<body bgcolor="Orange">
+<center>
+      <h1> Congratulations!
+      <h2> AWS CodePipeline build is a Success.
+      <p>
         Please click here to Approve the deployment in Prod
-        = succeed "." do
-          %a{:href => "http://54.145.29.72:8080/job/NGMBuild/build?token=0T9tjmJNwW "} NGM Demo Project4
+      <a href="http://54.145.29.72:8080/job/NGMBuild/build?token=0T9tjmJNwW"/> NGM Demo Project7
+      </center>
+      </body>
+      </html>
