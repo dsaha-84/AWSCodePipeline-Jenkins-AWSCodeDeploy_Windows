@@ -1,4 +1,4 @@
-node ('Prod') {
+node ('Dev') {
     
     stage('SCM Checkout')
 	{
@@ -15,4 +15,4 @@ node ('Prod') {
     {
         echo "Hello done"
     }
-}
+i}
