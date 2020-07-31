@@ -11,7 +11,7 @@ node ('Dev') {
        echo "Success, waiting  for approval"
     }
     
-    stage('Final')
+    stage('Deploy')
     {
         echo "Hello done"
     }
