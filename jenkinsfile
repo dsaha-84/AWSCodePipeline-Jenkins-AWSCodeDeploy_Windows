@@ -16,11 +16,11 @@ pipeline {
                 parameters {
                     string(name: 'APPROVER', defaultValue: 'Mr Sridhar', description: 'We are going to deploy build no: ?')
                 }
-            }
+                }
             steps {
                 echo 'CI Release Environment'
                 build 'QA'
             }
         }
-        
+       } 
     }
