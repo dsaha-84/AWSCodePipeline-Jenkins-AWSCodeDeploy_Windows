@@ -19,7 +19,7 @@ pipeline {
                 }
             steps {
                 echo 'CI Release Environment'
-                build 'QA'
+                //build 'QA'
             }
         }
        } 
