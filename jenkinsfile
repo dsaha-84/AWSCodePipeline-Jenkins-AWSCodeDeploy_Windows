@@ -1,18 +1,26 @@
-node ('Dev') {
-    
-    stage('SCM Checkout')
-	{
-	
-  echo 'Waiting 1 minutes for deployment to complete prior starting smoke testing'
-  sleep 60 // seconds
-}
-    
-   stage('Build') {
-       echo "Success, waiting  for approval"
+pipeline {
+    agent any
+
+    stages {
+        stage('Deployment to Dev') {
+            steps {
+                echo 'Development Deployment'
+                build 'Dev'
+            }
+        }
+        stage('Deployment to QA') {
+            input {
+                message "Please approve to proceed ?"
+                ok "Yes, we should."
+                submitter "alice,bob"
+                parameters {
+                    string(name: 'APPROVER', defaultValue: 'Mr Sridhar', description: 'We are going to deploy build no: ?')
+                }
+            }
+            steps {
+                echo 'CI Release Environment'
+                build 'QA'
+            }
+        }
+        
     }
-    
-    stage('Deploy')
-    {
-        echo "Hello done"
-    }
-}
