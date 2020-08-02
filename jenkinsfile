@@ -1,9 +1,12 @@
-node ('Dev') {
+pipeline {
+    agent any
+
+    stages {
         stage('Deployment to Dev') {
-            
+            steps {
                 echo 'Development Deployment'
-                sleep 60 // seconds
-           
+                //build 'Dev'
+            }
         }
         stage('Deployment to QA') {
             input {
@@ -14,10 +17,10 @@ node ('Dev') {
                     string(name: 'APPROVER', defaultValue: 'Mr Sridhar', description: 'We are going to deploy build no: ?')
                 }
                 }
-          
+            steps {
                 echo 'CI Release Environment'
-                sleep 60 // seconds
-            
+                build 'QA'
+            }
         }
-        
+       } 
     }
