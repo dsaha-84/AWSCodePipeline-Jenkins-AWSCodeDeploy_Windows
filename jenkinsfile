@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Deployment to Dev') {
             steps {
-                echo 'Development Deployment'
+                echo 'Development Deployment done'
                 //build 'Dev'
             }
         }
