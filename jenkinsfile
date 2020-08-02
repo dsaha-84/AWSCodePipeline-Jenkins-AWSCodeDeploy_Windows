@@ -1,6 +1,6 @@
 node ('Dev') {
         stage('Deployment to Dev') {
-            steps {
+            step {
                 echo 'Development Deployment'
                 build 'Dev'
             }
@@ -14,7 +14,7 @@ node ('Dev') {
                     string(name: 'APPROVER', defaultValue: 'Mr Sridhar', description: 'We are going to deploy build no: ?')
                 }
                 }
-            steps {
+            step {
                 echo 'CI Release Environment'
                 build 'QA'
             }
