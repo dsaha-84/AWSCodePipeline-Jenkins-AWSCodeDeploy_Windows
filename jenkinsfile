@@ -1,9 +1,9 @@
 node ('Dev') {
         stage('Deployment to Dev') {
-            step {
+            
                 echo 'Development Deployment'
-                build 'Dev'
-            }
+                sleep 60 // seconds
+           
         }
         stage('Deployment to QA') {
             input {
@@ -14,10 +14,10 @@ node ('Dev') {
                     string(name: 'APPROVER', defaultValue: 'Mr Sridhar', description: 'We are going to deploy build no: ?')
                 }
                 }
-            step {
+          
                 echo 'CI Release Environment'
-                build 'QA'
-            }
+                sleep 60 // seconds
+            
         }
         
     }
