@@ -10,7 +10,7 @@ pipeline {
             }
         }
         
-      stages {
+      
         stage('upload artifacts to S3') {
             steps {
                 echo 'upload artifacts to S3'
@@ -19,7 +19,7 @@ pipeline {
             }
         }
 
-    stages {
+   
         stage('Deployment to Dev') {
             steps {
                 echo 'Code Deployment inprogress..'
@@ -50,4 +50,4 @@ pipeline {
         }
        } 
     }
-    }
+    
