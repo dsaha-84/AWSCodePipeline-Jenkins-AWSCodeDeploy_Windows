@@ -6,7 +6,7 @@ pipeline {
             steps {
                 echo 'Development Deployment'
                 //build 'Dev'
-				sleep 10
+	         sleep 10
             }
         }
         stage('download artifacts') {
