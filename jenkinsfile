@@ -24,7 +24,7 @@ pipeline {
             steps {
                 echo 'Code Deployment inprogress..'
                 //step([$class: 'AWSCodeDeployPublisher', applicationName: 'SampleAppDemo', awsAccessKey: 'AKIA2O67XNNT6FBC3KYH', awsSecretKey: 'KtNxaQJx/ONQLYwRZQoze8VE2M2Ueb23f1S4gnj+', deploymentConfig: 'CodeDeployDefault.AllAtOnce', deploymentGroupAppspec: false, deploymentGroupName: 'SampleAppDemoWindowsDeployGroup', deploymentMethod: 'deploy', excludes: '', iamRoleArn: '', includes: '**', pollingFreqSec: 15, pollingTimeoutSec: 3000, proxyHost: '', proxyPort: 0, region: 'us-east-1', s3bucket: 'samplewebapp', s3prefix: 'samplewebapp', subdirectory: '', versionFileName: '', waitForCompletion: true])               
-                build 'NGM-APP-Deployment'
+                build 'NGM/NGM-APP-Deployment'
             }
         }
         
@@ -46,7 +46,7 @@ pipeline {
             steps {
                 echo 'CI Release Environment'
                 //build 'QA'
-                build 'NGM-APP-Deployment'
+                build 'NGM/NGM-APP-Deployment'
             }
         }
        } 
