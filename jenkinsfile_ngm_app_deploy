@@ -6,14 +6,14 @@ pipeline {
             steps {
                 echo 'Development Deployment'
                 //build 'Dev'
-		sleep 30
+				sleep 10
             }
         }
         stage('download artifacts') {
             
             steps {
                 echo 'Downloading Artifacts from Artifactory Server'
-                sleep 30
+                sleep 10
             }
         }
 		
@@ -21,7 +21,7 @@ pipeline {
             
             steps {
                 echo 'deploy Messaging.css.mcafee.com'
-                sleep 30
+                sleep 10
             }
         }
 
@@ -29,7 +29,79 @@ pipeline {
             
             steps {
                 echo 'deploy Cohort.css.mcafee.com '
-                sleep 30
+                sleep 10
+            }
+        }
+
+    stage('deploy Eventstore.css.mcafee.com ') {
+            
+            steps {
+                echo 'deploy Eventstore.css.mcafee.com '
+                sleep 10
+            }
+        }
+
+    stage('deploy Policyorchestration.css.mcafee.com ') {
+            
+            steps {
+                echo 'deploy Policyorchestration.css.mcafee.com'
+                sleep 10
+            }
+        }
+
+    stage('deploy Enrollment.css.mcafee.com') {
+            
+            steps {
+                echo 'deploy Enrollment.css.mcafee.com'
+                sleep 10
+            }
+        }
+
+    stage('deploy Ngmconsole.int.mcafee.com') {
+            
+            steps {
+                echo 'deploy Ngmconsole.int.mcafee.com'
+                sleep 10
+            }
+        }
+
+    stage('deploy Windows services 1') {
+            
+            steps {
+                echo 'deploy Windows services 1'
+                sleep 10
+            }
+        }
+
+    stage('deploy Windows services 1') {
+            
+            steps {
+                echo 'deploy Windows services 1'
+                sleep 10
+            }
+        }
+
+    stage('deploy Windows services 2 ') {
+            
+            steps {
+                echo 'deploy Windows services 2 '
+                sleep 10
+            }
+        }
+
+    stage('deploy Task scheduler ') {
+            
+            steps {
+                echo 'deploy Task scheduler '
+                sleep 10
+            }
+        }
+
+    stage('deploy DB changes') {
+            
+            steps {
+                echo 'deploy DB changes'
+                sleep 10
             }
         }		
        } 
