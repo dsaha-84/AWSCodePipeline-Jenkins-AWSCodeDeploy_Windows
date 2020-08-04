@@ -65,13 +65,6 @@ pipeline {
             }
         }
 
-    stage('deploy Windows services 1') {
-            
-            steps {
-                echo 'deploy Windows services 1'
-                sleep 10
-            }
-        }
 
     stage('deploy Windows services 1') {
             
