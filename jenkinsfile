@@ -1,5 +1,23 @@
 pipeline {
     agent any
+    
+    stages {
+        stage('Download Artifacts from Artifactory') {
+            steps {
+                echo 'Downloading Artifacts from Artifactory'
+                //step([$class: 'AWSCodeDeployPublisher', applicationName: 'SampleAppDemo', awsAccessKey: 'AKIA2O67XNNT6FBC3KYH', awsSecretKey: 'KtNxaQJx/ONQLYwRZQoze8VE2M2Ueb23f1S4gnj+', deploymentConfig: 'CodeDeployDefault.AllAtOnce', deploymentGroupAppspec: false, deploymentGroupName: 'SampleAppDemoWindowsDeployGroup', deploymentMethod: 'deploy', excludes: '', iamRoleArn: '', includes: '**', pollingFreqSec: 15, pollingTimeoutSec: 3000, proxyHost: '', proxyPort: 0, region: 'us-east-1', s3bucket: 'samplewebapp', s3prefix: 'samplewebapp', subdirectory: '', versionFileName: '', waitForCompletion: true])               
+                
+            }
+        }
+        
+      stages {
+        stage('upload artifacts to S3') {
+            steps {
+                echo 'upload artifacts to S3'
+                //step([$class: 'AWSCodeDeployPublisher', applicationName: 'SampleAppDemo', awsAccessKey: 'AKIA2O67XNNT6FBC3KYH', awsSecretKey: 'KtNxaQJx/ONQLYwRZQoze8VE2M2Ueb23f1S4gnj+', deploymentConfig: 'CodeDeployDefault.AllAtOnce', deploymentGroupAppspec: false, deploymentGroupName: 'SampleAppDemoWindowsDeployGroup', deploymentMethod: 'deploy', excludes: '', iamRoleArn: '', includes: '**', pollingFreqSec: 15, pollingTimeoutSec: 3000, proxyHost: '', proxyPort: 0, region: 'us-east-1', s3bucket: 'samplewebapp', s3prefix: 'samplewebapp', subdirectory: '', versionFileName: '', waitForCompletion: true])               
+                
+            }
+        }
 
     stages {
         stage('Deployment to Dev') {
@@ -9,7 +27,8 @@ pipeline {
                 
             }
         }
-        stage('Deployment to QA') {
+        
+         stage('Validate deployment') {
             input {
                 message "Please approve to proceed ?"
                 ok "Yes, we should."
@@ -18,6 +37,12 @@ pipeline {
                     string(name: 'APPROVER', defaultValue: 'Mr Sridhar', description: 'We are going to deploy build no: ?')
                 }
                 }
+            steps {
+                echo 'CI Release Environment'
+                //build 'QA'
+            }
+        }
+        stage('Deployment to QA') {
             steps {
                 echo 'CI Release Environment'
                 //build 'QA'
