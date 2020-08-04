@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Get Environment Details') {
+            steps {
+                echo 'Development Deployment'
+                //build 'Dev'
+		sleep 30
+            }
+        }
+        stage('download artifacts') {
+            
+            steps {
+                echo 'Downloading Artifacts from Artifactory Server'
+                sleep 30
+            }
+        }
+		
+	stage('deploy Messaging.css.mcafee.com') {
+            
+            steps {
+                echo 'deploy Messaging.css.mcafee.com'
+                sleep 30
+            }
+        }
+
+    stage('deploy Cohort.css.mcafee.com ') {
+            
+            steps {
+                echo 'deploy Cohort.css.mcafee.com '
+                sleep 30
+            }
+        }		
+       } 
+    }
