@@ -5,7 +5,7 @@ pipeline {
         stage('Deployment to Dev') {
             steps {
                 echo 'Development Deployment done'
-                step([$class: 'AWSCodeDeployPublisher', applicationName: 'SampleAppDemo', awsAccessKey: 'AKIA2O67XNNT6FBC3KYH', awsSecretKey: 'KtNxaQJx/ONQLYwRZQoze8VE2M2Ueb23f1S4gnj+', deploymentConfig: 'CodeDeployDefault.AllAtOnce', deploymentGroupAppspec: false, deploymentGroupName: 'SampleAppDemoDG1', excludes: '', iamRoleArn: '', includes: '**', proxyHost: '', proxyPort: 0, region: 'us-east-1', s3bucket: 'samplewebapp', s3prefix: 'SampleApp', subdirectory: '', versionFileName: '', waitForCompletion: false]) 
+                step([$class: 'AWSCodeDeployPublisher', applicationName: 'SampleAppDemo', awsAccessKey: 'AKIA2O67XNNT6FBC3KYH', awsSecretKey: 'KtNxaQJx/ONQLYwRZQoze8VE2M2Ueb23f1S4gnj+', deploymentConfig: 'CodeDeployDefault.AllAtOnce', deploymentGroupAppspec: false, deploymentGroupName: 'SampleAppDemoDG1', deploymentMethod: 'deploy', excludes: '', iamRoleArn: '', includes: '**', pollingFreqSec: 15, pollingTimeoutSec: 3000, proxyHost: '', proxyPort: 0, region: 'us-east-1', s3bucket: 'samplewebapp', s3prefix: 'samplewebapp', subdirectory: '', versionFileName: '', waitForCompletion: true])
                 //build 'Dev' for testing purpose
                 
             }
