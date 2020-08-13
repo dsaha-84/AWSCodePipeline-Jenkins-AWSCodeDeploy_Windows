@@ -18,31 +18,28 @@ pipeline {
                 
             }
         }
+        
+        stage('Get Env Details') {
+            steps {
+                echo 'upload artifacts to S3'
+                //step([$class: 'AWSCodeDeployPublisher', applicationName: 'SampleAppDemo', awsAccessKey: 'AKIA2O67XNNT6FBC3KYH', awsSecretKey: 'KtNxaQJx/ONQLYwRZQoze8VE2M2Ueb23f1S4gnj+', deploymentConfig: 'CodeDeployDefault.AllAtOnce', deploymentGroupAppspec: false, deploymentGroupName: 'SampleAppDemoWindowsDeployGroup', deploymentMethod: 'deploy', excludes: '', iamRoleArn: '', includes: '**', pollingFreqSec: 15, pollingTimeoutSec: 3000, proxyHost: '', proxyPort: 0, region: 'us-east-1', s3bucket: 'samplewebapp', s3prefix: 'samplewebapp', subdirectory: '', versionFileName: '', waitForCompletion: true])               
+                
+            }
+        }
+        
+        
 
    
-        stage('Deployment to Dev') {
+        stage('Deployment to Env') {
             steps {
-                echo 'Code Deployment inprogress..'
+                echo 'Can call Codedeploy Inplace/Bluegreen depending job on Env type'
                 //step([$class: 'AWSCodeDeployPublisher', applicationName: 'SampleAppDemo', awsAccessKey: 'AKIA2O67XNNT6FBC3KYH', awsSecretKey: 'KtNxaQJx/ONQLYwRZQoze8VE2M2Ueb23f1S4gnj+', deploymentConfig: 'CodeDeployDefault.AllAtOnce', deploymentGroupAppspec: false, deploymentGroupName: 'SampleAppDemoWindowsDeployGroup', deploymentMethod: 'deploy', excludes: '', iamRoleArn: '', includes: '**', pollingFreqSec: 15, pollingTimeoutSec: 3000, proxyHost: '', proxyPort: 0, region: 'us-east-1', s3bucket: 'samplewebapp', s3prefix: 'samplewebapp', subdirectory: '', versionFileName: '', waitForCompletion: true])               
                 build 'NGM/NGM-APP-Deployment'
             }
         }
         
-         stage('Validate deployment') {
-            input {
-                message "Please approve to proceed ?"
-                ok "Yes, we should."
-                submitter "alice,bob"
-                parameters {
-                    string(name: 'APPROVER', defaultValue: 'Mr Sridhar', description: 'We are going to deploy build no: ?')
-                }
-                }
-            steps {
-                echo 'CI Release Environment'
-                //build 'QA'
-            }
-        }
-        stage('Deployment to QA') {
+        
+        stage('Notify Developer') {
             steps {
                 echo 'CI Release Environment'
                 //build 'QA'
