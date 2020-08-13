@@ -1,18 +1,48 @@
-node ('Dev') {
+pipeline {
+    agent any
     
-    stage('SCM Checkout')
-	{
-	
-  echo 'Waiting 1 minutes for deployment to complete prior starting smoke testing'
-  sleep 60 // seconds
-}
-    
-   stage('Build') {
-       echo "Success, waiting  for approval"
+    stages {
+        stage('Download Artifacts from Artifactory') {
+            steps {
+                echo 'Downloading Artifacts from Artifactory'
+                //step([$class: 'AWSCodeDeployPublisher', applicationName: 'SampleAppDemo', awsAccessKey: 'AKIA2O67XNNT6FBC3KYH', awsSecretKey: 'KtNxaQJx/ONQLYwRZQoze8VE2M2Ueb23f1S4gnj+', deploymentConfig: 'CodeDeployDefault.AllAtOnce', deploymentGroupAppspec: false, deploymentGroupName: 'SampleAppDemoWindowsDeployGroup', deploymentMethod: 'deploy', excludes: '', iamRoleArn: '', includes: '**', pollingFreqSec: 15, pollingTimeoutSec: 3000, proxyHost: '', proxyPort: 0, region: 'us-east-1', s3bucket: 'samplewebapp', s3prefix: 'samplewebapp', subdirectory: '', versionFileName: '', waitForCompletion: true])               
+                
+            }
+        }
+        
+      
+        stage('upload artifacts to S3') {
+            steps {
+                echo 'upload artifacts to S3'
+                //step([$class: 'AWSCodeDeployPublisher', applicationName: 'SampleAppDemo', awsAccessKey: 'AKIA2O67XNNT6FBC3KYH', awsSecretKey: 'KtNxaQJx/ONQLYwRZQoze8VE2M2Ueb23f1S4gnj+', deploymentConfig: 'CodeDeployDefault.AllAtOnce', deploymentGroupAppspec: false, deploymentGroupName: 'SampleAppDemoWindowsDeployGroup', deploymentMethod: 'deploy', excludes: '', iamRoleArn: '', includes: '**', pollingFreqSec: 15, pollingTimeoutSec: 3000, proxyHost: '', proxyPort: 0, region: 'us-east-1', s3bucket: 'samplewebapp', s3prefix: 'samplewebapp', subdirectory: '', versionFileName: '', waitForCompletion: true])               
+                
+            }
+        }
+        
+        stage('Get Env Details') {
+            steps {
+                echo 'upload artifacts to S3'
+                //step([$class: 'AWSCodeDeployPublisher', applicationName: 'SampleAppDemo', awsAccessKey: 'AKIA2O67XNNT6FBC3KYH', awsSecretKey: 'KtNxaQJx/ONQLYwRZQoze8VE2M2Ueb23f1S4gnj+', deploymentConfig: 'CodeDeployDefault.AllAtOnce', deploymentGroupAppspec: false, deploymentGroupName: 'SampleAppDemoWindowsDeployGroup', deploymentMethod: 'deploy', excludes: '', iamRoleArn: '', includes: '**', pollingFreqSec: 15, pollingTimeoutSec: 3000, proxyHost: '', proxyPort: 0, region: 'us-east-1', s3bucket: 'samplewebapp', s3prefix: 'samplewebapp', subdirectory: '', versionFileName: '', waitForCompletion: true])               
+                
+            }
+        }
+        
+       
+        stage('Deployment to Env') {
+            steps {
+                echo 'Can call Codedeploy Inplace/Bluegreen depending job on Env type'
+                //step([$class: 'AWSCodeDeployPublisher', applicationName: 'SampleAppDemo', awsAccessKey: 'AKIA2O67XNNT6FBC3KYH', awsSecretKey: 'KtNxaQJx/ONQLYwRZQoze8VE2M2Ueb23f1S4gnj+', deploymentConfig: 'CodeDeployDefault.AllAtOnce', deploymentGroupAppspec: false, deploymentGroupName: 'SampleAppDemoWindowsDeployGroup', deploymentMethod: 'deploy', excludes: '', iamRoleArn: '', includes: '**', pollingFreqSec: 15, pollingTimeoutSec: 3000, proxyHost: '', proxyPort: 0, region: 'us-east-1', s3bucket: 'samplewebapp', s3prefix: 'samplewebapp', subdirectory: '', versionFileName: '', waitForCompletion: true])               
+                build 'NGM/NGM-APP-Deployment'
+            }
+        }
+        
+        
+        stage('Notify Developer') {
+            steps {
+                echo 'CI Release Environment'
+                //build 'QA'
+                build 'NGM/NGM-APP-Deployment'
+            }
+        }
+       } 
     }
-    
-    stage('Final')
-    {
-        echo "Hello done"
-    }
-}
