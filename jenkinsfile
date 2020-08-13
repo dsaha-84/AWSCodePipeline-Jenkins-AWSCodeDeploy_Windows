@@ -27,9 +27,7 @@ pipeline {
             }
         }
         
-        
-
-   
+       
         stage('Deployment to Env') {
             steps {
                 echo 'Can call Codedeploy Inplace/Bluegreen depending job on Env type'
