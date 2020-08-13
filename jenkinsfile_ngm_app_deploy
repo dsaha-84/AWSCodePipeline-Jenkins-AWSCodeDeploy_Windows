@@ -16,6 +16,14 @@ pipeline {
                 sleep 10
             }
         }
+	
+	stage('Upload artifacts to S3') {
+            
+            steps {
+                echo 'Uploading to S3'
+                sleep 10
+            }
+        }
 		
 	stage('deploy Messaging.css.mcafee.com') {
             
